@@ -1,0 +1,12 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  width: 800px;
+  max-width: 100vw;
+  height: 600px;
+  padding: 20px;
+}
