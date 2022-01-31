@@ -1,5 +1,10 @@
 # React Student Details
 
+![tests](https://github.com/castynet/ifunza/actions/workflows/run-tests.yml/badge.svg)
+![deploy](https://github.com/castynet/ifunza/actions/workflows/firebase-hosting-merge.yml/badge.svg)
+![example workflow](https://github.com/castynet/ifunza/actions/workflows/codeql-analysis.yml/badge.svg)
+
+---
 [See the Site](https://max-ifunza.web.app/)
 
 ## External Packages
@@ -48,7 +53,7 @@ const encode = (input) => {
 encode('aaabbbbccdaa');
 ```
 
-## :white_check_mark: Question Two
+## Question Two
 
 ```javascript
 const sum = () => {
@@ -58,7 +63,7 @@ const sum = () => {
 // Logs 10
 ```
 
-### Answer 02
+### :white_check_mark: Answer 02
 
 ```javascript
 const sum = (a) => {
