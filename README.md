@@ -13,6 +13,7 @@
 2. Zustand - state management.
 3. Firebase - File management & CI/CD.
 4. React Router - Routing solution.
+5. Sass - extend ant design with some custom css
 
 ## Foreign Files
 
