@@ -8,9 +8,9 @@ export default function WhereAmI() {
 
   return (
     <Steps current={whereAmI}>
-      <Step title="Student Info" description="Fill in student's data." />
-      <Step title="Parent Info" description="Fill in parent's data." />
-      <Step title="Overview" description="Review your data" />
+      <Step title="Student Info" />
+      <Step title="Parent Info" />
+      <Step title="Overview" />
     </Steps>
   );
 }

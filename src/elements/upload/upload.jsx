@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Upload, message } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { initFirebaseApp } from "firebaseConfig";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-function getBase64(img, callback) {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result));
-  reader.readAsDataURL(img);
-}
+import { useStore } from "store";
+
+const storage = getStorage(initFirebaseApp());
 
 function beforeUpload(file) {
   const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
@@ -20,29 +20,35 @@ function beforeUpload(file) {
   return isJpgOrPng && isLt2M;
 }
 
-export default function UploadImage() {
+export default function UploadImage(props) {
+  const { parent, updateParent, student, updateStudent } = useStore(
+    (state) => state
+  );
+  const { step } = props;
   const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState(step === "parent" ? parent.img : student.img);
 
   const handleChange = (info) => {
-    console.log(info);
     if (info.file.status === "uploading") {
       setLoading(true);
-    } else if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (imageUrl) => {
-        setLoading(false);
-        setUrl(imageUrl);
-      });
     }
   };
 
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
+  const uploadImage = async (props) => {
+    const { file } = props;
+    const imgRef = ref(storage, `images/${file.name}`);
+    const uploadTask = await uploadBytes(imgRef, file);
+    const imageUrl = await getDownloadURL(uploadTask.ref);
+    if (imageUrl) {
+      setLoading(false);
+      setUrl(imageUrl);
+      if (step === "student") {
+        updateStudent({ img: imageUrl });
+      } else if (step === "parent") {
+        updateParent({ img: imageUrl });
+      }
+    }
+  };
 
   return (
     <Upload
@@ -50,14 +56,19 @@ export default function UploadImage() {
       listType="picture-card"
       className="avatar-uploader"
       showUploadList={false}
-      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
       beforeUpload={beforeUpload}
+      customRequest={uploadImage}
       onChange={(e) => handleChange(e)}
     >
       {url ? (
         <img src={url} alt="avatar" style={{ width: "100%" }} />
       ) : (
-        uploadButton
+        <div>
+          {loading ? <LoadingOutlined /> : <PlusOutlined />}
+          <p style={{ marginTop: 8, textTransform: "capitalize" }}>
+            Upload {step}'s <br /> Profile Picture
+          </p>
+        </div>
       )}
     </Upload>
   );
