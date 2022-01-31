@@ -4,9 +4,6 @@ import "./index.css";
 import App from "./App";
 import "antd/dist/antd.css";
 import { BrowserRouter } from "react-router-dom";
-import { initFirebaseApp } from "./firebase";
-
-initFirebaseApp();
 
 ReactDOM.render(
   <React.StrictMode>
