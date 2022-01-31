@@ -1,0 +1,45 @@
+.inputsWrapper {
+  width: 400px;
+  max-width: 90vw;
+}
+
+.formWrapper {
+  display: flex;
+  gap: 10px;
+  margin: 30px 0 0 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  .error {
+    border: 1px solid orangered;
+  }
+
+  .okay {
+    border: 1px solid limegreen;
+  }
+
+  .inputNumber {
+    width: 100%;
+  }
+}
+
+.select {
+  width: 100%;
+}
+
+.navBtn {
+  margin: 30px 0 0 0;
+}
+
+.prev {
+  float: left;
+}
+
+.next {
+  float: right;
+}
+
+.datePicker {
+  width: 100%;
+}
