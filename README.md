@@ -17,6 +17,10 @@
 1. Elements - contains the apps elements, used by various components and instances of these components.
 2. Components - contains the 3 steps and an indicator of what step the user is at.
 
+## Tests
+
+Each component & the `app.js` contains tests to verify that all the content is present and is getting rendered to the DOM
+
 ## Question One
 
 ```javascript
