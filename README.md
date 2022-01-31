@@ -16,8 +16,9 @@
 
 ## Foreign Files
 
-1. `firebase.js` initialize firebase, the file is required by the `index.js`.
+1. `firebaseConfig.js` initialize firebase, the file is required by the `upload component`.
 2. `store.js` zustand state management, holds the global app state.
+3. `testsSetup.js` defined match media a bug fix for running tests with Jest.
 
 ## Directories
 
